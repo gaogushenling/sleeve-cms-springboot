@@ -1,5 +1,6 @@
 package io.github.talelin.latticy.controller.cms;
 
+import io.github.talelin.core.annotation.LoginRequired;
 import io.github.talelin.latticy.bo.FileBO;
 import io.github.talelin.latticy.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class FileController {
     private FileService fileService;
 
     @PostMapping("")
+//    @LoginRequired
     public List<FileBO> upload(HttpServletRequest request) {
         MultipartHttpServletRequest multipartHttpServletRequest = ((MultipartHttpServletRequest) request);
         MultiValueMap<String, MultipartFile> fileMap = multipartHttpServletRequest.getMultiFileMap();

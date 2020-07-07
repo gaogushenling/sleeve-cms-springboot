@@ -10,14 +10,14 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName("banner")
-public class BannerDO {
+@TableName("banner_item")
+public class BannerItemDO {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
     private String name;
-    private String title;
-    private String description;
     private String img;
+    private String keyword;
+    private Integer type;
 
     @JsonIgnore
     private Date createTime;
@@ -26,6 +26,8 @@ public class BannerDO {
     private Date updateTime;
 
     @JsonIgnore
-    @TableLogic // 逻辑删除 / 物理删除，此处注释表示软删除，标记删除时间
+    @TableLogic
     private Date deleteTime;
+
+    private Long bannerId;
 }

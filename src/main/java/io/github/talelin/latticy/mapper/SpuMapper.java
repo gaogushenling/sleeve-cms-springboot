@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SpuMapper extends BaseMapper<SpuDO> {
-    SpuDetailDO getDetail(Long id);
+    SpuDetailDO getDetail(Integer id);
 }

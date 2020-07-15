@@ -3,9 +3,11 @@ package io.github.talelin.latticy.controller.v1;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.autoconfigure.exception.NotFoundException;
 import io.github.talelin.latticy.common.mybatis.Page;
+import io.github.talelin.latticy.dto.SpuDTO;
 import io.github.talelin.latticy.model.SpuDO;
 import io.github.talelin.latticy.model.SpuDetailDO;
 import io.github.talelin.latticy.service.SpuService;
+import io.github.talelin.latticy.vo.CreatedVO;
 import io.github.talelin.latticy.vo.PageResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +23,12 @@ import javax.validation.constraints.Positive;
 public class SpuController {
     @Autowired
     private SpuService spuService;
+
+    @PostMapping
+    public CreatedVO create(@RequestBody @Validated SpuDTO dto) {
+        this.spuService.create(dto);
+        return new CreatedVO();
+    }
 
     @GetMapping("/{id}")
     public SpuDO get(@PathVariable(value = "id") @Positive(message = "{id.positive}") Long id) {
@@ -45,7 +53,7 @@ public class SpuController {
     }
 
     @GetMapping("/{id}/detail")
-    public SpuDetailDO getDetail(@PathVariable(value = "id") @Positive(message = "{id.positive}") Long id) {
+    public SpuDetailDO getDetail(@PathVariable(value = "id") @Positive(message = "{id.positive}") Integer id) {
         SpuDetailDO spuDetailDO = spuService.getDetail(id);
         if (spuDetailDO == null) {
             throw new NotFoundException("spu not found", 30001);

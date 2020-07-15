@@ -1,12 +1,13 @@
 package io.github.talelin.latticy.model;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 @Data
+@TableName("sku")
 public class SkuDO {
     private int id;
     private BigDecimal price;
